@@ -1,0 +1,68 @@
+Neural Networks:
+Learn what features matter (deep learning)
+Many layers
+utilize neurons - simple building blocks that do the learning
+Corpus of data -> layers (granular details) -> more layers (understand higher level) -> prediction
+feed forward - each layer receives output from previous layer and sends its output to next layer
+each layer has interconnected active learning units (neuron) and receive input and pass output to neurons of previous/next layer
+each neuron is a mathematical function that is applied to the input (vector of variables applied and the pass scalar to next layer)
+strength of connection determines sensitivity/weight on input to receiving neuron, so each edge has a weight
+neural network consists of thousands of neurons and connections
+each neuron applies 2 simple functions (affine transformation, activation function)
+affine transformation - linear, inputs multiplies by weights (w1x1 + w2x2 + ...)
+activation function - output of affine transformation fed into it, several options - identity function passes input and is used in linear neurons
+ReLU (rectified linear unit, most common, max(activation output, 0)), logit ( aka softmax, s shape, values 0 to 1), tanh (s shape, includes negatives), step (-1 or 1)
+each activation functions have a gradient/slope where it is sensitive to changes in input (active region), operation in this regian allows activation function to train neuron, otherwise its saturated and unaffected by input
+weights and biases are determined during training
+
+PyTorch:
+deep learning framework for fast flexible experimentation, open source
+initial 2016, stable 2018
+based on Torch (2002)
+GPU ready tensor library - multidimensional arrays, either CPU or GPU
+tensors have functionality similar to numpy arrays
+closely tied to Python, similar to np and scikit
+tape based autograd - dynamic neural network redefinition
+imperative execution - write code, run immediately, no separate build and run phases -> easier debugging
+
+Compared to tensorflow:
+Tensorflow more popular, Nov 2015, Google vs Facebook, both use tensors, both have CUDA support for GPUs
+TF has static computation graph, but both have support for either static or dynamic
+Pytorch has no sessions - more closely tied to python, also easier debugging
+TF has tensorboard for visualization, Pytorch needs matplotlib or seaborn
+TF has TF serving, pytorch needs REST API like flask
+TF has more compatability with Keras
+
+Tensors:
+Central unit of data in pytorch, set of values shaped into array of any number of dimensions
+Vectors are 1D tensors, matrices are 2D, etc. but tensors can have any number of dimensions
+PyTorch tensors are optimized with GPU use for parallel computations
+CUDA allows for utilization of GPUs with tensors and other applications
+
+GPU/CUDA
+torch.cuda library (ex: torch.cuda.FloatTensor)
+asynchronous operation leads to parallel computation, but can force synchronous if desired (debugging, etc)
+typically need to use cloud for GPU usage, not free
+
+Training
+Gradient descent optimization - identify lowest mean squared error based on slope and y intercept for linear (weights and biases in general)
+forward and backward passes
+uses autograd package
+identify weights and biases of individual neurons
+start at random values and descend curve towards lowest point on gradient
+Each model calculates an error resulting in the difference between the predicted and actual values (loss value of function)
+The optimizer then uses the error function and tweaks parameters to address errors in a backward pass
+Updated parameters and then used in the next forward pass
+Process continues until weights and biases converge to their final values
+MSE - mean squared error of loss
+Gradient is vector of partial derivatives of loss to slope - how much does the loss change with respect to slope
+Minimize gradient of loss
+Deep learning relies on automatic differentiation - easy to implement but conceptually difficult
+Autograd is pytorch package for calculating gradients for backward propagation (reverse auto-differentiation)
+Learning Rate is the size of step taken towards minimizing gradient (large steps -> high learning rate, lower training time, may not converge)
+2 phases: forward pass (calculate loss) and backward pass (update parameters)
+
+
+
+
+
